@@ -14,11 +14,15 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
+      - name: Save DART report originals
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+        run: python scripts/save_reports.py
       - name: Crawl structured financial data
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
         run: python scripts/crawl_dart.py
-      - name: Preserve 2010-2014 annual originals
+      - name: Preserve legacy originals
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
         run: python scripts/legacy_dart.py
