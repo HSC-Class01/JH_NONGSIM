@@ -26,6 +26,8 @@ jobs:
         env:
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
         run: python scripts/legacy_dart.py
+      - name: Extract legacy figures
+        run: python scripts/legacy_extract.py
       - name: Commit data
         run: |
           git config user.name "github-actions[bot]"
